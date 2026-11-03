@@ -1,0 +1,18 @@
+Source: pie-archive-keyring
+Section: misc
+Priority: important
+Maintainer: Maxwell <maxwell@blueberrypieos.com>
+Standards-Version: 4.7.3
+Homepage: https://github.com/blueberrypieos/archive-keyring
+Vcs-Git: https://github.com/blueberrypieos/archive-keyring.git
+Vcs-Browser: https://github.com/blueberrypieos/archive-keyring
+Rules-Requires-Root: no
+
+Package: pie-archive-keyring
+Architecture: all
+Multi-Arch: foreign
+Priority: important
+Description: PIE archive key and apt source
+ The OpenPGP certificate that signs the PIE apt archive, in
+ /usr/share/keyrings, and the apt source for the archive at
+ https://blueberrypieos.com/apt.

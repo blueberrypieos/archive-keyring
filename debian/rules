@@ -1,0 +1,29 @@
+#!/usr/bin/make -f
+# SPDX-License-Identifier: BSD-2-Clause
+# Copyright (c) 2026 The Blueberry Pie OS Authors
+
+SOURCE_DATE_EPOCH ?= $(shell dpkg-parsechangelog -STimestamp)
+P := pie-archive-keyring
+D := $(CURDIR)/debian/$(P)
+SOURCES := /private/etc/apt/sources.list.d/pie.sources
+
+build build-arch build-indep:
+
+binary: binary-arch binary-indep
+binary-arch:
+binary-indep:
+	rm -rf $(D)
+	install -D -m 644 keyrings/$(P).asc $(D)/usr/share/keyrings/$(P).asc
+	install -D -m 644 apt/pie.sources $(D)$(SOURCES)
+	install -D -m 644 debian/copyright $(D)/usr/share/doc/$(P)/copyright
+	mkdir -p $(D)/DEBIAN
+	echo $(SOURCES) > $(D)/DEBIAN/conffiles
+	cd $(D) && find . -path ./DEBIAN -prune -o -type f -printf '%P\0' | sort -z | xargs -0 md5sum > DEBIAN/md5sums
+	dpkg-gencontrol -p$(P) -P$(D)
+	find $(D) -exec touch -h -d @$(SOURCE_DATE_EPOCH) {} +
+	dpkg-deb --root-owner-group -Zxz --build $(D) ..
+
+clean:
+	rm -rf $(D) debian/files debian/*.substvars
+
+.PHONY: build build-arch build-indep binary binary-arch binary-indep clean
