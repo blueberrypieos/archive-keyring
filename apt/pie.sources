@@ -1,5 +1,5 @@
 Types: deb
 URIs: https://blueberrypieos.com/apt
 Suites: blueberry-pie-os
-Components: core
+Components: core extra community
 Signed-By: /usr/share/keyrings/pie-archive-keyring.asc
