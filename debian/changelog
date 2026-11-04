@@ -1,5 +1,11 @@
 pie-archive-keyring (2026.11.04) blueberry-pie-os; urgency=medium
 
+  * The apt source has the extra and community components.
+
+ -- Maxwell <maxwell@blueberrypieos.com>  Wed, 04 Nov 2026 22:51:14 +0000
+
+pie-archive-keyring (2026.11.03) blueberry-pie-os; urgency=medium
+
   * Initial release.
   * The archive key C252619746965C8F69D816AEF9192FEC69B6B13A.
 
